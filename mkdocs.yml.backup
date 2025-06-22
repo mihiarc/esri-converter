@@ -9,12 +9,14 @@ repo_url: https://github.com/mihiarc/esri-converter
 theme:
   name: material
   palette:
+    # Palette toggle for light mode
     - scheme: default
       primary: blue
       accent: indigo
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
+    # Palette toggle for dark mode
     - scheme: slate
       primary: blue
       accent: indigo
@@ -36,6 +38,8 @@ theme:
 
 plugins:
   - search
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
   - mermaid2
 
 markdown_extensions:
@@ -73,6 +77,7 @@ nav:
     - Command Line Usage: user-guide/cli.md
     - Batch Processing: user-guide/batch.md
     - Performance Tips: user-guide/performance.md
+  - API Reference: reference/
   - Development:
     - Contributing: development/contributing.md
     - Architecture: development/architecture.md
@@ -85,4 +90,4 @@ extra:
       link: https://github.com/mihiarc/esri-converter
   
 extra_css:
-  - stylesheets/extra.css
+  - stylesheets/extra.css 

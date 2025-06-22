@@ -190,7 +190,6 @@ esri-converter convert input.gdb output.parquet --chunk-size 10000
 
 If you encounter issues:
 
-1. Check the [troubleshooting guide](../user-guide/troubleshooting.md)
 2. Search [existing issues](https://github.com/mihiarc/esri-converter/issues)
 3. Create a [new issue](https://github.com/mihiarc/esri-converter/issues/new) with:
    - Your operating system and Python version

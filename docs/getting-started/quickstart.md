@@ -185,7 +185,7 @@ Now that you've completed your first conversion, explore more advanced features:
 - **[Examples](examples.md)** - Common usage patterns and workflows
 - **[User Guide](../user-guide/converting.md)** - Detailed conversion options
 - **[Performance Tips](../user-guide/performance.md)** - Optimize for your use case
-- **[API Reference](../reference/)** - Complete API documentation
+- ****API Reference** - Complete function documentation (available in code docstrings)** - Complete API documentation
 
 ## Real-World Example
 

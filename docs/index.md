@@ -81,7 +81,7 @@ graph TD
 - [**Installation Guide**](getting-started/installation.md) - Get up and running quickly
 - [**Quick Start Tutorial**](getting-started/quickstart.md) - Your first conversion in 5 minutes
 - [**User Guide**](user-guide/converting.md) - Complete conversion workflows
-- [**API Reference**](reference/) - Detailed API documentation
+- **API Reference** - Complete function documentation (available in code docstrings) - Detailed API documentation
 - [**Performance Tips**](user-guide/performance.md) - Optimize for your use case
 
 ## 🤝 Community & Support
