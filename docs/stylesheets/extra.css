@@ -1,0 +1,228 @@
+/* Custom styles for ESRI Converter documentation */
+
+:root {
+  --md-primary-fg-color: #1976d2;
+  --md-accent-fg-color: #448aff;
+}
+
+/* Hero section styling */
+.hero-section {
+  background: linear-gradient(135deg, #1976d2 0%, #448aff 100%);
+  color: white;
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Feature cards */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-card {
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.feature-card h3 {
+  color: var(--md-primary-fg-color);
+  margin-bottom: 1rem;
+}
+
+/* Performance table styling */
+.performance-table {
+  margin: 2rem 0;
+}
+
+.performance-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.performance-table th {
+  background: var(--md-primary-fg-color);
+  color: white;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.performance-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* Code block enhancements */
+.highlight pre {
+  border-radius: 6px;
+  border: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* Navigation enhancements */
+.md-nav__item--active > .md-nav__link {
+  font-weight: 600;
+}
+
+/* Admonition styling */
+.md-typeset .admonition.tip {
+  border-left: 4px solid #00c853;
+}
+
+.md-typeset .admonition.warning {
+  border-left: 4px solid #ff9800;
+}
+
+.md-typeset .admonition.danger {
+  border-left: 4px solid #f44336;
+}
+
+/* Progress bar styling for examples */
+.progress-example {
+  background: #f5f5f5;
+  border-left: 4px solid var(--md-primary-fg-color);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+}
+
+/* API reference styling */
+.doc-heading {
+  border-bottom: 2px solid var(--md-primary-fg-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-section p {
+    font-size: 1rem;
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark theme adjustments */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #1e1e1e;
+  --md-default-fg-color: #ffffff;
+}
+
+[data-md-color-scheme="slate"] .feature-card {
+  background: #2d2d2d;
+  border-color: #404040;
+}
+
+[data-md-color-scheme="slate"] .progress-example {
+  background: #2d2d2d;
+  border-left-color: var(--md-accent-fg-color);
+}
+
+/* Mermaid diagram styling */
+.mermaid {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+/* Statistics and metrics styling */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--md-accent-fg-color--transparent);
+  border-radius: 8px;
+  border: 1px solid var(--md-accent-fg-color);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--md-accent-fg-color);
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 0.5rem;
+}
+
+/* Command line styling */
+.cli-example {
+  background: #1e1e1e;
+  color: #00ff00;
+  padding: 1rem;
+  border-radius: 6px;
+  font-family: 'Roboto Mono', monospace;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.cli-example::before {
+  content: '$ ';
+  color: #00ff00;
+  font-weight: bold;
+}
+
+/* Comparison table styling */
+.comparison-table table {
+  width: 100%;
+}
+
+.comparison-table th:first-child {
+  width: 25%;
+}
+
+.comparison-table td:nth-child(2) {
+  background: rgba(255, 193, 7, 0.1);
+}
+
+.comparison-table td:nth-child(3) {
+  background: rgba(76, 175, 80, 0.1);
+}
+
+/* Loading animation for progress examples */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.loading-text {
+  animation: pulse 2s infinite;
+} 
