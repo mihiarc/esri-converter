@@ -12,12 +12,12 @@ Key Features:
 - Robust error handling and type safety
 
 Example:
-    >>> from esri_converter import GDBConverter
-    >>> converter = GDBConverter()
-    >>> converter.convert_gdb("data.gdb", output_format="geoparquet")
+    >>> from esri_converter import convert_gdb_to_parquet
+    >>> result = convert_gdb_to_parquet("data.gdb")
+    >>> print(f"Converted {result['total_records']} records")
 """
 
-from importlib.metadata import version, PackageNotFoundError
+from importlib.metadata import PackageNotFoundError, version
 
 try:
     __version__ = version("esri-converter")
@@ -26,28 +26,25 @@ except PackageNotFoundError:
     __version__ = "unknown"
 
 # Core API functions
-from .api import (
-    convert_gdb_to_parquet,
-    convert_multiple_gdbs,
-    discover_gdb_files,
-    get_gdb_info
-)
+from .api import convert_gdb_to_parquet, convert_multiple_gdbs, discover_gdb_files, get_gdb_info
 
 # Core converter classes
-from .converters.gdb_converter import EnhancedGDBConverter
-from .converters.gdb_converter import EnhancedGDBConverter as GDBConverter  # Alias for backward compatibility
-
-# Utility functions
-from .utils.formats import list_supported_formats, get_format_info
-from .utils.validation import validate_gdb_file, validate_output_path
+from .converters.geoparquet_converter import GeoParquetConverter
+from .converters.geoparquet_converter import (
+    GeoParquetConverter as GDBConverter,  # Alias for backward compatibility
+)
 
 # Core exceptions
 from .exceptions import (
+    ConversionError,
     ESRIConverterError,
     UnsupportedFormatError,
     ValidationError,
-    ConversionError,
 )
+
+# Utility functions
+from .utils.formats import get_format_info, list_supported_formats
+from .utils.validation import validate_gdb_file, validate_output_path
 
 __all__ = [
     "__version__",
@@ -58,7 +55,7 @@ __all__ = [
     "get_gdb_info",
     # Converters
     "GDBConverter",
-    "EnhancedGDBConverter",
+    "GeoParquetConverter",
     # Utilities
     "list_supported_formats",
     "get_format_info",
@@ -75,4 +72,4 @@ __all__ = [
 __author__ = "Your Name"
 __email__ = "your.email@example.com"
 __license__ = "MIT"
-__description__ = "Modern tools for converting ESRI proprietary formats to open source formats" 
+__description__ = "Modern tools for converting ESRI proprietary formats to open source formats"

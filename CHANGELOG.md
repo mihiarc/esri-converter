@@ -5,6 +5,30 @@ All notable changes to the ESRI Converter project will be documented in this fil
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2025-06-22
+
+### Added
+- **OGC GeoParquet Compliance**: Now produces valid GeoParquet files according to the OGC GeoParquet v1.0.0 specification
+- New `GeoParquetConverter` class replacing the old non-compliant converter
+- GeoPandas dependency for proper GeoParquet generation
+- Verification scripts for testing GeoParquet compliance
+
+### Changed
+- Complete rewrite of the converter to produce OGC-compliant GeoParquet files
+- Geometry storage changed from WKT text to WKB binary format
+- CRS information is now properly preserved in geo metadata
+- Updated documentation to reflect GeoParquet compliance
+
+### Removed
+- Legacy `EnhancedGDBConverter` that produced non-standard parquet files
+- `use_legacy_converter` parameter (all output is now GeoParquet compliant)
+
+### Fixed
+- Output files can now be read by standard GeoParquet readers (GeoPandas, DuckDB Spatial, QGIS, etc.)
+- Added required geo metadata to parquet file headers
+- Geometry data now stored in standard `geometry` column
+- Fixed interoperability with the broader geospatial ecosystem
+
 ## [0.1.0] - 2025-01-28
 
 ### Added

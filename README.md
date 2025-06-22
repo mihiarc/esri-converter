@@ -4,8 +4,9 @@ Modern tools for converting ESRI proprietary formats to open source formats. Bui
 
 ## 🚀 Features
 
+- **OGC GeoParquet Compliant**: Produces valid GeoParquet files readable by all standard tools
 - **Large-Scale Processing**: Handle multi-GB GDB files with streaming and chunking
-- **Modern Stack**: Built with Polars, Rich, and PyArrow for maximum performance
+- **Modern Stack**: Built with GeoPandas, Polars, Rich, and PyArrow for maximum performance
 - **Beautiful UI**: Rich progress bars, tables, and visual feedback
 - **Memory Efficient**: Process datasets larger than available RAM
 - **Robust Error Handling**: Comprehensive validation and error recovery
@@ -28,7 +29,7 @@ pip install esri-converter[duckdb,dev]
 ## 🔧 Requirements
 
 - Python 3.10+
-- Modern dependencies: Polars, Rich, Fiona, PyArrow, Shapely
+- Modern dependencies: GeoPandas, Polars, Rich, Fiona, PyArrow, Shapely
 
 ## 🎯 Quick Start
 
@@ -37,10 +38,15 @@ pip install esri-converter[duckdb,dev]
 ```python
 from esri_converter.api import convert_gdb_to_parquet
 
-# Convert a single GDB file
+# Convert a single GDB file to OGC-compliant GeoParquet
 result = convert_gdb_to_parquet("data.gdb")
 print(f"Converted {result['total_records']:,} records")
 print(f"Output size: {result['output_size_mb']:.1f} MB")
+
+# The output files are valid GeoParquet files that can be read by:
+# - GeoPandas: gpd.read_parquet("output.parquet")
+# - DuckDB Spatial: SELECT * FROM 'output.parquet'
+# - QGIS, ArcGIS Pro, and other GIS tools
 ```
 
 ### Advanced Usage
@@ -84,7 +90,7 @@ print(f"Successfully converted {results['gdbs_converted']}/{results['total_gdbs'
 
 #### `convert_gdb_to_parquet()`
 
-Convert a File Geodatabase to GeoParquet format.
+Convert a File Geodatabase to OGC GeoParquet format.
 
 **Parameters:**
 - `gdb_path` (str | Path): Path to the .gdb file
@@ -213,16 +219,16 @@ print(f"Estimated output size: {sizes['parquet']:.1f} MB")
 
 ```
 esri_converter/
-├── __init__.py           # Main package exports
-├── api.py               # Clean API functions
-├── exceptions.py        # Custom exceptions
+├── __init__.py                  # Main package exports
+├── api.py                      # Clean API functions
+├── exceptions.py               # Custom exceptions
 ├── converters/
 │   ├── __init__.py
-│   └── gdb_converter.py # Core conversion logic
+│   └── geoparquet_converter.py # OGC GeoParquet converter
 └── utils/
     ├── __init__.py
-    ├── formats.py       # Format information
-    └── validation.py    # Input validation
+    ├── formats.py              # Format information
+    └── validation.py           # Input validation
 ```
 
 ### Key Components
@@ -231,6 +237,36 @@ esri_converter/
 2. **Converter Engine** (`converters/`): Core conversion logic with Rich UI
 3. **Utilities** (`utils/`): Validation, format info, and helper functions
 4. **Exception Handling** (`exceptions.py`): Comprehensive error types
+
+## 🗺️ GeoParquet Compliance
+
+ESRI Converter produces **OGC GeoParquet v1.0.0** compliant files that are compatible with the entire geospatial ecosystem.
+
+### What is GeoParquet?
+
+GeoParquet is an open standard that adds geospatial capabilities to Apache Parquet files. Our output files:
+
+- ✅ Can be read by GeoPandas, DuckDB Spatial, QGIS, and other GIS tools
+- ✅ Include proper geo metadata according to the specification
+- ✅ Store geometries as WKB (Well-Known Binary) for optimal performance
+- ✅ Preserve CRS (Coordinate Reference System) information
+- ✅ Support all geometry types (Point, LineString, Polygon, etc.)
+
+### Verifying GeoParquet Output
+
+```python
+import geopandas as gpd
+
+# Read the converted GeoParquet file
+gdf = gpd.read_parquet("output/my_layer.parquet")
+
+# The file contains:
+# - Geometry column with proper spatial data
+# - CRS information preserved from source
+# - All attributes from the original GDB
+print(f"CRS: {gdf.crs}")
+print(f"Bounds: {gdf.total_bounds}")
+```
 
 ## 🔧 Technical Details
 

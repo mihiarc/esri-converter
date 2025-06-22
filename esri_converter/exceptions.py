@@ -5,13 +5,13 @@ This module defines all custom exceptions used throughout the package
 to provide clear error handling and debugging information.
 """
 
-from typing import Optional, Any
+from typing import Any
 
 
 class ESRIConverterError(Exception):
     """Base exception for all ESRI Converter errors."""
 
-    def __init__(self, message: str, details: Optional[dict[str, Any]] = None) -> None:
+    def __init__(self, message: str, details: dict[str, Any] | None = None) -> None:
         super().__init__(message)
         self.message = message
         self.details = details or {}
@@ -29,8 +29,8 @@ class UnsupportedFormatError(ESRIConverterError):
     def __init__(
         self,
         format_name: str,
-        supported_formats: Optional[list[str]] = None,
-        details: Optional[dict[str, Any]] = None,
+        supported_formats: list[str] | None = None,
+        details: dict[str, Any] | None = None,
     ) -> None:
         supported = supported_formats or []
         message = f"Unsupported format: {format_name}"
@@ -48,9 +48,9 @@ class ValidationError(ESRIConverterError):
     def __init__(
         self,
         message: str,
-        field: Optional[str] = None,
-        value: Optional[Any] = None,
-        details: Optional[dict[str, Any]] = None,
+        field: str | None = None,
+        value: Any | None = None,
+        details: dict[str, Any] | None = None,
     ) -> None:
         super().__init__(message, details)
         self.field = field
@@ -63,10 +63,10 @@ class ConversionError(ESRIConverterError):
     def __init__(
         self,
         message: str,
-        source_file: Optional[str] = None,
-        target_file: Optional[str] = None,
-        layer_name: Optional[str] = None,
-        details: Optional[dict[str, Any]] = None,
+        source_file: str | None = None,
+        target_file: str | None = None,
+        layer_name: str | None = None,
+        details: dict[str, Any] | None = None,
     ) -> None:
         super().__init__(message, details)
         self.source_file = source_file
@@ -80,7 +80,7 @@ class SchemaError(ConversionError):
     def __init__(
         self,
         message: str,
-        schema_info: Optional[dict[str, Any]] = None,
+        schema_info: dict[str, Any] | None = None,
         **kwargs: Any,
     ) -> None:
         super().__init__(message, **kwargs)
@@ -93,7 +93,7 @@ class MemoryError(ConversionError):
     def __init__(
         self,
         message: str,
-        memory_usage: Optional[dict[str, Any]] = None,
+        memory_usage: dict[str, Any] | None = None,
         **kwargs: Any,
     ) -> None:
         super().__init__(message, **kwargs)
@@ -106,10 +106,10 @@ class FileAccessError(ESRIConverterError):
     def __init__(
         self,
         message: str,
-        file_path: Optional[str] = None,
-        operation: Optional[str] = None,
-        details: Optional[dict[str, Any]] = None,
+        file_path: str | None = None,
+        operation: str | None = None,
+        details: dict[str, Any] | None = None,
     ) -> None:
         super().__init__(message, details)
         self.file_path = file_path
-        self.operation = operation 
+        self.operation = operation
